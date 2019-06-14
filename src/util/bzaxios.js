@@ -28,7 +28,7 @@ axios.interceptors.response.use(function (response) {
 
 var bzaxios = {
     get:function(url,params){
-        return axios.get(url,params)
+        return axios.get(url,{params:params})
         // console.log("get请求")
     },
     post:function(url,params){

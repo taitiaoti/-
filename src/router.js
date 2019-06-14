@@ -14,7 +14,19 @@ export default new Router({
         {
           path:'daily',
           name:'daily',
-          component:()=>import(/* webpackChunkName:"daily" */ "@/components/Daily/Daily")
+          component:()=>import(/* webpackChunkName:"daily" */ "@/components/Daily/Daily"),
+          children:[
+            {
+              path:'setDailyBackground',
+              name:'setDailyBackground',
+              component:()=>import(/* webpackChunkName:'setDailyBackground' */ '@/components/Daily/setDailyBackground')
+            },
+            {
+              path:'dailyList',
+              name:'dailyList',
+              component:()=>import(/* webpackChunkName:'dailyList' */ '@/components/Daily/dailyList')
+            }
+          ]
         },
         {
           path:'newMessage',
@@ -36,7 +48,14 @@ export default new Router({
         {
           path:'music',
           name:'music',
-          component:()=>import(/* webpackChunkName:'music' */ "@/components/Music/Music")
+          component:()=>import(/* webpackChunkName:'music' */ "@/components/Music/Music"),
+          children:[
+            {
+              path:'uploadMusic',
+              name:'uploadMusic',
+              component:()=>import(/* webpackChunkName:'uploadMusic' */ "@/components/Music/uploadMusic")
+            }
+          ]
         }
       ]
     },

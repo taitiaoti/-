@@ -70,7 +70,7 @@ export default {
             height: 100%;
             padding: 20px 20px 0 20px;
             overflow-y: scroll;
-            
+            position: relative;
         }
         .active{
             background: cyan;
