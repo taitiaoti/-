@@ -20,7 +20,7 @@
 export default {
     data(){
         return {
-            isActive:false,
+            isActive:-1,
             navList:[
                 {title:'日历管理',name:'daily'},
                 {title:'留言管理',name:'newMessage'},
@@ -43,14 +43,15 @@ export default {
         width: 100%;
         height: 100%;
         display: flex;
+        overflow: hidden;
         .navBar{
             width: 20%;
+            min-width: 300px;
             height: 100%;
             background: rgb(245, 243, 243);
             ul{
                 width: 100%;
                 height: 100%;
-                min-width: 300px;
                 padding: 30px 10px 0 10px;
                 box-sizing: border-box;
                 li{
@@ -68,6 +69,8 @@ export default {
             width: 80%;
             height: 100%;
             padding: 20px 20px 0 20px;
+            overflow-y: scroll;
+            
         }
         .active{
             background: cyan;

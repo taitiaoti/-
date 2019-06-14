@@ -7,10 +7,10 @@
             :before-close="handleClose">
             <el-form ref="musicType" :model="musicType" :rules="rules" label-width="80px">
               <el-form-item label="音乐类型" prop='type'>
-                <el-input v-model="musicType.type" @change="getIcon($event)"></el-input>
+                <el-input v-model="musicType.type"></el-input>
               </el-form-item>
               <el-form-item label="类型图标">
-                <input type='file' @change="getIcon($event)"/>
+                <input type='file' @change="fileData($event)"/>
               </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -48,23 +48,37 @@ export default {
         }
         this.operatorConfirm('退出新增',action)
       },
-      getIcon(ev){
+      // 获取要上传的文件
+      fileData(ev){
         // console.log(ev.target.files)
         var files = ev.target.files;
-        this.musicType.icon = files[0].name;
+        this.musicType.icon = ev.target.files[0];
       },
       // 点击上传
       addNewMusicType(){
-        console.log(this.musicType)
-        var fd = new FormData();
-        fd.append('type',this.musicType.type);
-        fd.append('icon',this.musicType.icon);
-        let config = {
-          headers:{'Content-Type':'multipart/form-data'}
-        }
-        axios.post(this.$apis.addNewMusicType,fd,config)
-        .then((resp)=>{
-          console.log(resp)
+        // 校验
+        this.$refs['musicType'].validate((vaild)=>{
+          if(vaild){
+            // 创建FormData
+            var fd = new FormData();
+            // 将文件添加到FromData里
+            fd.append('type',this.musicType.type);
+            fd.append('icon',this.musicType.icon);
+            // 设置请求头
+            let config = {
+              headers:{'Content-Type':'multipart/form-data'}
+            }
+            // 发送请求
+            axios.post(this.$apis.addNewMusicType,fd,config)
+            .then((resp)=>{
+              // console.log(resp)
+              // 新增成功后重新发起查询数据请求,跳转到上一个页面
+              this.$store.dispatch('findMusicTypes')
+              this.$router.go(-1)
+            })
+          }else{
+            console.log('校验失败')
+          }
         })
       }
     }

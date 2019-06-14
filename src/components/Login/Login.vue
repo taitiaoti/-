@@ -2,7 +2,7 @@
     <div id="login">
         <div id="loginContent">
             <h1 style="fontSize:30px;margin:20px 0;textAlign:center;">音乐管理</h1>
-            <el-form label-width='80px' :model='userInfo' :rules='rules' ref='userInfo'>
+            <el-form status-icon=true label-width='80px' :model='userInfo' :rules='rules' ref='userInfo'>
                 <el-form-item label='用户名 ' prop='username'>
                     <el-input v-model="userInfo.username"></el-input>
                 </el-form-item>

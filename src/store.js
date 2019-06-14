@@ -20,7 +20,7 @@ export default new Vuex.Store({
   mutations: {
     // 将请求的数据储存到state里
     FINDMUSICTYPES(state,payload){
-      console.log(payload)
+      // console.log(payload)
       state.musicTypes = payload;
     }
   },

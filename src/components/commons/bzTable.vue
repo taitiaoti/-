@@ -35,4 +35,10 @@ export default {
         display: flex;
         justify-content: space-between;
     }
+    .tab-content{
+        width: 100%;
+        min-width: 800px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
 </style>
